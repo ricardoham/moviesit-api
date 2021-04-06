@@ -14,7 +14,7 @@ console.log("----", process.env.MONGO_DBNAME);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/movies", movies);
+app.use("/", movies);
 
 app.listen(config.API_PORT, () => {
   console.log(`API running on port ${config.API_PORT}`);

@@ -20,3 +20,9 @@ exports.movies_create = (req, res) => {
     res.send("Movie created");
   });
 };
+
+exports.movies_details = (req, res) => {
+  Movies.find({}, (err, movies) => {
+    res.send(movies)
+  })
+}
