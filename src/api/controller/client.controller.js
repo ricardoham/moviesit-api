@@ -1,5 +1,5 @@
 const https = require('https');
-const TMDB = require("../model/tmdb.model");
+const TMDB = require("../../model/tmdb.model");
 
 exports.tmdb_movies = async (req, resp) => {
 
