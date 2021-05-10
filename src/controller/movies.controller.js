@@ -5,7 +5,7 @@ exports.movies = (req, res) => {
   res.send("Movie Controller");
 };
 
-exports.movies_create = (req, res) => {
+exports.movies_create = async (req, res, next) => {
   let movie = new Movies({
     name: req.body.name,
     genre: req.body.genre,
@@ -13,12 +13,12 @@ exports.movies_create = (req, res) => {
     imdbScore: req.body.imdbScore,
   });
 
-  movie.save((err) => {
-    if (err) {
-      return next(err);
-    }
+  try {
+    movie.save();
     res.send("Movie created");
-  });
+  } catch(err) {
+    next(err)
+  }
 };
 
 exports.movies_details = (req, res) => {
