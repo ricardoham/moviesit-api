@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const WaitList = require('../model/waitlist.model');
 
 
-exports.waitList_create = (req, res, next) => {
+exports.waitList_create = async (req, res, next) => {
   let waitList = new WaitList({
     id: uuidv4(),
     name: req.body.name,

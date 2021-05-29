@@ -19,10 +19,9 @@ exports.comments_create = async (req, res, next) => {
 };
 
 exports.comments_details = async (req, res) => {
-  const comments = await Comments.find({});
-
   try {
-    res.send(comments);
+    const comments = await Comments.find({});
+    res.status(200).send(comments);
   } catch (error) {
     res.status(404).send(error);
   }

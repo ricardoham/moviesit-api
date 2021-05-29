@@ -8,6 +8,7 @@ const comments = require("./routes/comments.route");
 const recommendation = require("./routes/comments.route");
 const waitList = require("./routes/waitlist.route");
 const watchedMovies = require("./routes/watched-movies.route");
+const friends = require("./routes/friends.route");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/", comments);
 app.use("/", recommendation);
 app.use("/", waitList);
 app.use("/", watchedMovies);
+app.use("/", friends);
 
 app.listen(config.API_PORT, () => {
   console.log(`API running on port ${config.API_PORT}`);

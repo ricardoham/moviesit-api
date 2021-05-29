@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const WatchedMovies = require('../model/waitlist.model');
 
 
-exports.watchedMovies_create = (req, res, next) => {
+exports.watchedMovies_create = async (req, res, next) => {
   let watchedMovies = new WaitList({
     id: uuidv4(),
     name: req.body.name,
