@@ -28,3 +28,36 @@ exports.waitList_details = async (req, res) => {
     res.status(404).send(error);
   }
 }
+
+exports.waitList_detail= async (req, res) => {
+  try {
+    const waitList = await WaitList.findById(req.params.id);
+    if (!waitList) res.status(404).send("No waitList found");
+    res.status(200).send(waitList);
+  } catch(error) {
+    res.status(401).send(error);
+  }
+}
+
+exports.waitList_update = async (req, res) => {
+  try {
+    const waitList = await WaitList.findByIdAndUpdate(req.params.id, req.body, (err) => {
+      res.status(404).send("Impossible to update", err);
+    });
+    await waitList.save();
+    res.status(200).send(waitList);
+  } catch (error) {
+    res.status(401).send(error);
+  }
+}
+
+exports.waitList_delete = async (req, res) => {
+  console.log(req.body)
+  try {
+    const waitList = await WaitList.findByIdAndDelete(req.body.id);
+    if (!waitList) res.status(404).send("No waitList found");
+    res.status(204).send();
+  } catch (error) {
+    res.status(401).send(error);
+  }
+}
