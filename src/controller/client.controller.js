@@ -1,12 +1,13 @@
 const https = require('https');
-const TMDB = require("../model/tmdb.model");
+const { TMDBMovie, TMDBMovieResults } = require("../model/tmdb.model");
 
 exports.tmdb_movies = async (req, resp) => {
-
   const token = process.env.TMDB_API;
+  const api_key = process.env.TMDB_API_KEY;
+
   const options = {
     host: 'api.themoviedb.org',
-    path: '/3/movie/76341',
+    path: `/3/search/movie?api_key=${api_key}&language=en-US&query=${req.query.name}&page=${req.query.page}&include_adult=false`,
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -23,18 +24,22 @@ exports.tmdb_movies = async (req, resp) => {
     let data = [];
     res.on('data', (chunk) => {
       data.push(chunk);
-    });
-    res.on('end', () => {
-      const parsed = JSON.parse(Buffer.concat(data).toString());
-      let tmdbMovie = new TMDB({
-        id: parsed.id,
-        title: parsed.original_title,
-        genre: parsed.genres,
-        overview: parsed.overview,
-        popularity: parsed.popularity,
-        voteAverage: parsed.vote_average,
-      })
-      resp.send(tmdbMovie);
+    }).on('end', () => {
+      const parsed = JSON.parse(data);
+      const tmdbMovie = parsed.results.map((item) => {
+        let parsedData = new TMDBMovie(
+          item.id,
+          item.title,
+          item.genre_ids,
+          item.overview,
+          item.popularity,
+          item.vote_average,
+          item.release_date,
+        );
+        return parsedData
+      });
+      const tmdbMovieResults = new TMDBMovieResults (parsed.page, tmdbMovie);
+      resp.send(tmdbMovieResults);
     })
   }).end();
   
