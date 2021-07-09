@@ -1,9 +1,10 @@
-const express = require("express");
+const express = require('express');
+
 const router = express.Router();
 
-const watchedMovies_controller = require("../controller/watched-movies.controller");
+const watchedMoviesController = require('../controller/watched-movies.controller');
 
-router.get("/watchedmovies", watchedMovies_controller.watchedMovies_details);
-router.post("/watchedmovies", watchedMovies_controller.watchedMovies_create);
+router.get('/watchedmovies', watchedMoviesController.watchedMovies_details);
+router.post('/watchedmovies', watchedMoviesController.watchedMovies_create);
 
 module.exports = router;

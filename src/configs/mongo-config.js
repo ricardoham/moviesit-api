@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const config = require("./config");
+const mongoose = require('mongoose');
+const config = require('./config');
 
 mongoose.connect(
   config.MONGO_URI,
@@ -10,13 +10,13 @@ mongoose.connect(
   },
   (err, db) => {
     if (err) {
-      console.log("Error occurred on data base connection: ", err);
+      console.log('Error occurred on data base connection: ', err);
       db.close();
     }
-    console.log("Connected with database");
-  }
+    console.log('Connected with database');
+  },
 );
 mongoose.Promise = global.Promise;
 
-console.log("------", config.MONGO_DBNAME);
+console.log('------', config.MONGO_DBNAME);
 module.exports = mongoose.connection;

@@ -1,12 +1,12 @@
 module.exports = {
-  TMDBMovie: function TMDBMovie (
-    id, 
+  TMDBMovie: function TMDBMovie(
+    id,
     title,
     genre,
     overview,
     popularity,
     voteAverage,
-    releaseDate
+    releaseDate,
   ) {
     this.id = id;
     this.title = title;
@@ -16,11 +16,11 @@ module.exports = {
     this.voteAverage = voteAverage;
     this.releaseDate = releaseDate;
   },
-  TMDBMovieResults: function TMDBMovieResults (
+  TMDBMovieResults: function TMDBMovieResults(
     page,
-    results
+    results,
   ) {
     this.page = page;
     this.results = results;
   },
-}
+};

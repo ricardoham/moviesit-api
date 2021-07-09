@@ -1,18 +1,18 @@
 const https = require('https');
-const { TMDBMovie, TMDBMovieResults } = require("../model/tmdb.model");
+const { TMDBMovie, TMDBMovieResults } = require('../model/tmdb.model');
 
 exports.tmdb_movies = async (req, resp) => {
   const token = process.env.TMDB_API;
-  const api_key = process.env.TMDB_API_KEY;
+  const apiKey = process.env.TMDB_API_KEY;
 
   const options = {
     host: 'api.themoviedb.org',
-    path: `/3/search/movie?api_key=${api_key}&language=en-US&query=${req.query.name}&page=${req.query.page}&include_adult=false`,
+    path: `/3/search/movie?api_key=${apiKey}&language=en-US&query=${req.query.name}&page=${req.query.page}&include_adult=false`,
     method: 'GET',
     headers: {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token}`
-    }
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
   };
   try {
     https.request(options, (res) => {
@@ -21,13 +21,13 @@ exports.tmdb_movies = async (req, resp) => {
         res.resume();
         return;
       }
-      let data = [];
+      const data = [];
       res.on('data', (chunk) => {
         data.push(chunk);
       }).on('end', () => {
         const parsed = JSON.parse(data);
         const tmdbMovie = parsed.results.map((item) => {
-          let parsedData = new TMDBMovie(
+          const parsedData = new TMDBMovie(
             item.id,
             item.title,
             item.genre_ids,
@@ -36,14 +36,14 @@ exports.tmdb_movies = async (req, resp) => {
             item.vote_average,
             item.release_date,
           );
-          return parsedData
+          return parsedData;
         });
-        const tmdbMovieResults = new TMDBMovieResults (parsed.page, tmdbMovie);
+        const tmdbMovieResults = new TMDBMovieResults(parsed.page, tmdbMovie);
         resp.send(tmdbMovieResults);
-      })
+      });
     }).end();
   } catch (err) {
-    console.log('Error ocurred during API Client call', err)
-    resp.status(500).send(error);
+    console.log('Error ocurred during API Client call', err);
+    resp.status(500).send(err);
   }
-}
+};
