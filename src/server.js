@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const cors = require('cors');
 const config = require('./configs/config');
 const db = require('./configs/mongo-config');
 const movies = require('./routes/movies.route');
@@ -11,12 +11,15 @@ const watchedMovies = require('./routes/watched-movies.route');
 const friends = require('./routes/friends.route');
 
 const app = express();
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 db.on('connected', console.log.bind(console, 'MongoDB Connected: '));
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', movies);
 app.use('/', clientAPI);
 app.use('/', comments);
