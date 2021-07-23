@@ -36,7 +36,7 @@ exports.tmdb_movies = async (req, resp) => {
           );
           return parsedData;
         });
-        const tmdbMovieResults = new TMDBMovieResults(parsed.page, tmdbMovie);
+        const tmdbMovieResults = new TMDBMovieResults(parsed.page, parsed.total_pages, tmdbMovie);
         resp.send(tmdbMovieResults);
       });
     }).end();
@@ -47,6 +47,7 @@ exports.tmdb_movies = async (req, resp) => {
 };
 
 exports.tmdb_movie_details = async (req, resp) => {
+  console.log(req.params.id);
   const options = {
     host: 'api.themoviedb.org',
     path: `/3/movie/${req.params.id}?api_key=${apiKey}&language=en-US`,
@@ -67,26 +68,24 @@ exports.tmdb_movie_details = async (req, resp) => {
       res.on('data', (chunk) => {
         data.push(chunk);
       }).on('end', () => {
+        console.log('DATA', data);
         const parsed = JSON.parse(data);
-        const tmdbMovie = parsed.results.map((item) => {
-          const parsedData = new TMDBMovieDetail(
-            item.id,
-            item.title,
-            item.genres,
-            item.overview,
-            item.popularity,
-            item.vote_average,
-            item.release_date,
-            item.poster_path,
-            item.budget,
-            item.status,
-            item.runtime,
-            item.revenue,
-          );
-          return parsedData;
-        });
-        const tmdbMovieResults = new TMDBMovieResults(parsed.page, tmdbMovie);
-        resp.send(tmdbMovieResults);
+        console.log('Parsed', parsed);
+        const parsedData = new TMDBMovieDetail(
+          parsed.id,
+          parsed.title,
+          parsed.genres,
+          parsed.overview,
+          parsed.popularity,
+          parsed.vote_average,
+          parsed.release_date,
+          parsed.poster_path,
+          parsed.budget,
+          parsed.status,
+          parsed.runtime,
+          parsed.revenue,
+        );
+        resp.send(parsedData);
       });
     }).end();
   } catch (err) {

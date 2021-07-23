@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./configs/config');
 const db = require('./configs/mongo-config');
-const movies = require('./routes/movies.route');
+const favMovies = require('./routes/fav-movies.route');
 const clientAPI = require('./routes/client.route');
 const comments = require('./routes/comments.route');
 const recommendation = require('./routes/comments.route');
@@ -20,7 +20,7 @@ app.use(cors(corsOptions));
 db.on('connected', console.log.bind(console, 'MongoDB Connected: '));
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
-app.use('/', movies);
+app.use('/', favMovies);
 app.use('/', clientAPI);
 app.use('/', comments);
 app.use('/', recommendation);

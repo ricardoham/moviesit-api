@@ -12,9 +12,11 @@ module.exports = {
   },
   TMDBMovieResults: function TMDBMovieResults(
     page,
+    totalPages,
     results,
   ) {
     this.page = page;
+    this.totalPages = totalPages;
     this.results = results;
   },
 };
