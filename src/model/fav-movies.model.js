@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const FavMoviesSchema = new Schema({
   id: { type: String, required: true },
+  movieId: { type: Number, required: true },
   isFavorite: { type: Boolean, require: true },
-  movieId: { type: String, required: true },
   title: { type: String, required: true },
   genres: { type: Array, required: true },
   overview: { type: String, required: true },

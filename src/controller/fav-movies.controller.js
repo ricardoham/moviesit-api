@@ -1,19 +1,22 @@
+const { v4: uuidv4 } = require('uuid');
 const FavMovies = require('../model/fav-movies.model');
 
 exports.fav_movies = (req, res) => {
-  console.log(req);
+  // console.log(req);
   res.send('Fav Movie Controller');
 };
 
 exports.fav_movies_create = async (req, res, next) => {
-  const movie = new FavMovies({
-    isFavorite: req.body.isFavorite,
+  const favMovie = new FavMovies({
+    id: uuidv4(),
     movieId: req.body.id,
+    isFavorite: req.body.isFavorite,
     title: req.body.title,
-    genres: req.body.genre,
+    genres: req.body.genres,
     overview: req.body.overview,
     popularity: req.body.popularity,
     voteAverage: req.body.voteAverage,
+    releaseDate: req.body.releaseDate,
     posterPath: req.body.posterPath,
     budget: req.body.budget,
     runtime: req.body.runtime,
@@ -21,8 +24,8 @@ exports.fav_movies_create = async (req, res, next) => {
   });
 
   try {
-    await movie.save();
-    res.send('Movie created');
+    await favMovie.save();
+    res.send('favMovie created');
   } catch (err) {
     next(err);
   }
@@ -39,7 +42,7 @@ exports.fav_movies_details = async (req, res) => {
 
 exports.fav_movie_detail = async (req, res) => {
   try {
-    const movie = await FavMovies.findById(req.params.id);
+    const movie = await FavMovies.find({ movieId: req.params.id });
     if (!movie) res.status(404).send('No movie found');
     res.status(200).send(movie);
   } catch (error) {
@@ -49,7 +52,7 @@ exports.fav_movie_detail = async (req, res) => {
 
 exports.fav_movie_delete = async (req, res) => {
   try {
-    const movie = await FavMovies.findByIdAndDelete(req.body.id);
+    const movie = await FavMovies.deleteOne({ movieId: req.body.id });
     if (!movie) res.status(404).send('No movies found');
     res.status(204).send();
   } catch (error) {

@@ -16,6 +16,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+app.use(express.json());
 
 db.on('connected', console.log.bind(console, 'MongoDB Connected: '));
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
