@@ -4,6 +4,7 @@ const config = require('./config');
 mongoose.connect(
   config.MONGO_URI,
   {
+    useUnifiedTopology: true,
     useNewUrlParser: true,
     dbName: config.MONGO_DBNAME,
     poolSize: 10,
