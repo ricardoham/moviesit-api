@@ -52,7 +52,7 @@ exports.fav_movie_detail = async (req, res) => {
 
 exports.fav_movie_delete = async (req, res) => {
   try {
-    const movie = await FavMovies.deleteOne({ movieId: req.body.id });
+    const movie = await FavMovies.deleteOne({ id: req.body.id });
     if (!movie) res.status(404).send('No movies found');
     res.status(204).send();
   } catch (error) {
