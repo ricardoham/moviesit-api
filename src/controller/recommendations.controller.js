@@ -41,6 +41,16 @@ exports.recommendation_detail = async (req, res) => {
   }
 };
 
+exports.recommendations_details_from_user = async (req, res) => {
+  try {
+    const recommendations = await Recommendations.find({ userId: req.params.id });
+    if (!recommendations) res.status(404).send('No recommendation found');
+    res.status(200).send(recommendations);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 exports.recommendation_update = async (req, res) => {
   try {
     const recommendation = await Recommendations.findByIdAndUpdate(
