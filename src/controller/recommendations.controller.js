@@ -4,9 +4,12 @@ const Recommendations = require('../model/recommendations.model');
 exports.recommendations_create = async (req, res) => {
   const recommendation = new Recommendations({
     id: uuidv4(),
-    name: req.body.name,
-    genre: req.body.genre,
-    comment: req.body.comment,
+    userId: req.body.userId,
+    createdBy: req.body.createdBy,
+    createdAt: req.body.createdAt,
+    title: req.body.title,
+    description: req.body.description,
+    movies: req.body.movies,
   });
 
   try {
