@@ -3,7 +3,10 @@ const recommendationsController = require('../controller/recommendations.control
 
 const recommendationsRouter = express.Router();
 
-recommendationsRouter.get('/recommendations', recommendationsController.recommendations_details);
-recommendationsRouter.post('/recommendations', recommendationsController.recommendations_create);
+recommendationsRouter.get('', recommendationsController.recommendations_details);
+recommendationsRouter.get('/:id', recommendationsController.recommendations_details);
+recommendationsRouter.post('', recommendationsController.recommendations_create);
+recommendationsRouter.put('', recommendationsController.recommendation_update);
+recommendationsRouter.delete('', recommendationsController.recommendation_delete);
 
 module.exports = recommendationsRouter;

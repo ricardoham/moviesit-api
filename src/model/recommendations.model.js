@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const MoviesSchema = new Schema({
-  id: { type: String, required: true },
   movieId: { type: Number, required: true },
   title: { type: String, required: true },
   genres: { type: Array, required: true },
