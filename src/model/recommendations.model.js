@@ -12,11 +12,11 @@ const RecommendationsSchema = new Schema({
   id: { type: String, required: true },
   userId: { type: String, required: true },
   createdBy: { type: String, required: true },
-  createdAt: { type: Date, required: true },
+  createdAt: { type: Date },
   title: { type: String, required: true, max: 200 },
   description: { type: String, required: true, max: 300 },
   movies: [MoviesSchema],
-  upVote: { type: Number },
+  upVote: { type: Number, default: 0 },
 });
 
 module.exports = mongoose.model('Recommendations', RecommendationsSchema);

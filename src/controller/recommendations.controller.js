@@ -6,7 +6,7 @@ exports.recommendations_create = async (req, res) => {
     id: uuidv4(),
     userId: req.body.userId,
     createdBy: req.body.createdBy,
-    createdAt: req.body.createdAt,
+    createdAt: Date.now(),
     title: req.body.title,
     description: req.body.description,
     movies: req.body.movies,
