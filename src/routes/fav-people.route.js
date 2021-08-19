@@ -1,12 +1,11 @@
 const express = require('express');
-
-const router = express.Router();
-
 const favPeopleController = require('../controller/fav-people.controller');
 
-router.get('/favpeople', favPeopleController.fav_people_details);
-router.get('/favpeople/:id', favPeopleController.fav_people_detail);
-router.post('/favpeople', favPeopleController.fav_people_create);
-router.delete('/favpeople', favPeopleController.fav_people_delete);
+const favPeopleRouter = express.Router();
 
-module.exports = router;
+favPeopleRouter.get('', favPeopleController.fav_people_details);
+favPeopleRouter.get('/:id', favPeopleController.fav_people_detail);
+favPeopleRouter.post('', favPeopleController.fav_people_create);
+favPeopleRouter.delete('', favPeopleController.fav_people_delete);
+
+module.exports = favPeopleRouter;

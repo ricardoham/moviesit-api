@@ -1,12 +1,11 @@
 const express = require('express');
-
-const router = express.Router();
-
 const clientController = require('../controller/client.controller');
 
-router.get('/tmdb', clientController.tmdb_movies);
-router.get('/tmdb/:id', clientController.tmdb_movie_details);
-router.get('/tmdbpeople', clientController.tmdb_people);
-router.get('/tmdbperson/:id', clientController.tmdb_person_details);
+const clientRouter = express.Router();
 
-module.exports = router;
+clientRouter.get('/tmdb', clientController.tmdb_movies);
+clientRouter.get('/tmdb/:id', clientController.tmdb_movie_details);
+clientRouter.get('/tmdbpeople', clientController.tmdb_people);
+clientRouter.get('/tmdbperson/:id', clientController.tmdb_person_details);
+
+module.exports = clientRouter;

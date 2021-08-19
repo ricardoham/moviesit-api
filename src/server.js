@@ -7,15 +7,17 @@ const favPeople = require('./routes/fav-people.route');
 const clientAPI = require('./routes/client.route');
 const comments = require('./routes/comments.route');
 const recommendation = require('./routes/comments.route');
-const waitList = require('./routes/waitlist.route');
-const watchedMovies = require('./routes/watched-movies.route');
 const friends = require('./routes/friends.route');
+// const waitList = require('./routes/waitlist.route');
+// const watchedMovies = require('./routes/watched-movies.route');
 
 const app = express();
 const corsOptions = {
   origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
 };
+const apiRouter = express.Router();
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
@@ -23,14 +25,15 @@ db.on('connected', console.log.bind(console, 'MongoDB Connected: '));
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 // Routes
-app.use('/', favMovies);
-app.use('/', favPeople);
-app.use('/', clientAPI);
-app.use('/', comments);
-app.use('/', recommendation);
-app.use('/', waitList);
-app.use('/', watchedMovies);
-app.use('/', friends);
+app.use('/api/v1', apiRouter);
+apiRouter.use('/favmovies', favMovies);
+apiRouter.use('/favpeople', favPeople);
+apiRouter.use('/client', clientAPI);
+apiRouter.use('/comments', comments);
+apiRouter.use('/recommendations', recommendation);
+apiRouter.use('/friends', friends);
+// app.use('/', waitList);
+// app.use('/', watchedMovies);
 
 app.listen(config.API_PORT, () => {
   console.log(`API running on port ${config.API_PORT}`);
