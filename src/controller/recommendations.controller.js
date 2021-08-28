@@ -66,7 +66,7 @@ exports.recommendation_update = async (req, res) => {
 
 exports.recommendation_delete = async (req, res) => {
   try {
-    const recommendation = await Recommendations.findByIdAndDelete(req.body.id);
+    const recommendation = await Recommendations.findByIdAndDelete(req.params.id);
     if (!recommendation) res.status(404).send('No recommendation found');
     res.status(204).send();
   } catch (error) {
