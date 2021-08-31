@@ -8,7 +8,7 @@ const clientAPI = require('./routes/client.route');
 const comments = require('./routes/comments.route');
 const recommendation = require('./routes/recommendation.route');
 const friends = require('./routes/friends.route');
-// const waitList = require('./routes/waitlist.route');
+const waitList = require('./routes/waitlist.route');
 // const watchedMovies = require('./routes/watched-movies.route');
 
 const app = express();
@@ -32,7 +32,7 @@ apiRouter.use('/client', clientAPI);
 apiRouter.use('/comments', comments);
 apiRouter.use('/recommendations', recommendation);
 apiRouter.use('/friends', friends);
-// app.use('/', waitList);
+apiRouter.use('/waitlist', waitList);
 // app.use('/', watchedMovies);
 
 app.listen(config.API_PORT, () => {

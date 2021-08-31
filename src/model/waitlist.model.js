@@ -1,12 +1,19 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+
+const MoviesSchema = new Schema({
+  movieId: { type: Number, required: true },
+  title: { type: String, required: true },
+});
+
 const WaitListSchema = new Schema({
   id: { type: String, required: true },
-  name: { type: String, required: true, max: 200 },
-  genre: { type: String, required: true },
-  initialDate: { type: Date, require: true },
-  doDate: { type: Date, require: false },
+  userId: { type: String, required: true },
+  title: { type: String, required: true },
+  comment: { type: String, require: true },
+  dueDate: { type: Date, require: false },
+  movie: MoviesSchema,
 });
 
 module.exports = mongoose.model('WaitList', WaitListSchema);

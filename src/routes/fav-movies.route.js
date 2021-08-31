@@ -4,7 +4,7 @@ const { checkJwt } = require('../middlewares/jwt');
 
 const favMovieRouter = express.Router();
 
-favMovieRouter.get('', checkJwt, favMoviesController.fav_movies_details);
+favMovieRouter.get('', favMoviesController.fav_movies_details);
 favMovieRouter.get('/:id', favMoviesController.fav_movie_detail);
 favMovieRouter.post('', favMoviesController.fav_movies_create);
 favMovieRouter.delete('', favMoviesController.fav_movie_delete);

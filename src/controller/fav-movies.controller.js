@@ -34,7 +34,11 @@ exports.fav_movies_create = async (req, res, next) => {
 exports.fav_movies_details = async (req, res) => {
   try {
     const movies = await FavMovies.find({});
-    res.status(200).send(movies);
+    const results = {
+      results: movies,
+      page: 0,
+    };
+    res.status(200).send(results);
   } catch (error) {
     res.status(401).send(error);
   }
