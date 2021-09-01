@@ -4,11 +4,11 @@ const Comments = require('../model/comments.model');
 exports.comments_create = async (req, res, next) => {
   const comment = new Comments({
     id: uuidv4(),
-    movieId: req.body.movieId,
-    commentTitle: req.body.commentTitle,
+    userId: req.body.userId,
+    recommendationId: req.body.recommendationId,
+    createdBy: req.body.createdBy,
+    createdAt: Date.now(),
     comment: req.body.comment,
-    upVote: req.body.upVote,
-    downVote: req.body.downVote,
   });
   try {
     await comment.save();
@@ -24,5 +24,57 @@ exports.comments_details = async (req, res) => {
     res.status(200).send(comments);
   } catch (error) {
     res.status(404).send(error);
+  }
+};
+
+exports.comment_detail = async (req, res) => {
+  try {
+    const comments = await Comments.findOne({ id: req.params.id });
+    if (!comments) res.status(404).send('No comments found');
+    res.status(200).send(comments);
+  } catch (error) {
+    res.status(401).send(error);
+  }
+};
+
+exports.comments_details_from_recommendation = async (req, res) => {
+  try {
+    const comments = await Comments.find({ recommendationId: req.params.id });
+    if (!comments) res.status(404).send('No comments found');
+    res.status(200).send(comments);
+  } catch (error) {
+    res.status(401).send(error);
+  }
+};
+
+exports.comments_details_from_user = async (req, res) => {
+  try {
+    const comments = await Comments.find({ userId: req.params.id });
+    if (!comments) res.status(404).send('No comments found');
+    res.status(200).send(comments);
+  } catch (error) {
+    res.status(401).send(error);
+  }
+};
+
+exports.comment_update = async (req, res) => {
+  try {
+    const comment = await Comments.findByIdAndUpdate(
+      req.params.id, req.body,
+    );
+    await comment.save();
+    res.status(200).send(comment);
+  } catch (error) {
+    res.status(401).send(error);
+  }
+};
+
+exports.comment_delete = async (req, res) => {
+  try {
+    const comment = await Comments.findByIdAndDelete(req.params.id);
+    if (!comment) res.status(404).send('No comment found');
+    res.status(204).send();
+  } catch (error) {
+    res.status(401).send(error);
   }
 };

@@ -7,7 +7,7 @@ const CommentsSchema = new Schema({
   recommendationId: { type: String, required: true },
   createdBy: { type: String, required: true },
   createdAt: { type: Date, required: true },
-  comment: { type: String, required: true, max: 300 },
+  comment: { type: String, required: true, max: 500 },
   upVote: { type: Number, default: 0 },
   downVote: { type: Number, default: 0 },
 });
