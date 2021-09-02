@@ -9,6 +9,8 @@ const comments = require('./routes/comments.route');
 const recommendation = require('./routes/recommendation.route');
 const friends = require('./routes/friends.route');
 const waitList = require('./routes/waitlist.route');
+const profile = require('./routes/profile.route');
+const deposition = require('./routes/deposition.route');
 // const watchedMovies = require('./routes/watched-movies.route');
 
 const app = express();
@@ -33,6 +35,8 @@ apiRouter.use('/comments', comments);
 apiRouter.use('/recommendations', recommendation);
 apiRouter.use('/friends', friends);
 apiRouter.use('/waitlist', waitList);
+apiRouter.use('/profile', profile);
+apiRouter.use('/deposition', deposition);
 // app.use('/', watchedMovies);
 
 app.listen(config.API_PORT, () => {
