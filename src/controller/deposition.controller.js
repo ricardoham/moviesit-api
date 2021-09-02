@@ -35,9 +35,9 @@ exports.deposition_detail = async (req, res) => {
   }
 };
 
-exports.deposition_deposition_from_user = async (req, res) => {
+exports.deposition_from_profile = async (req, res) => {
   try {
-    const deposition = await Deposition.find({ userId: req.params.id });
+    const deposition = await Deposition.find({ profileId: req.params.id });
     if (!deposition) res.status(404).send('No deposition found');
     res.status(200).send(deposition);
   } catch (error) {

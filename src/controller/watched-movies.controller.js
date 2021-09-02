@@ -49,7 +49,6 @@ exports.watchedMovies_update = async (req, res) => {
 };
 
 exports.watchedMovies_delete = async (req, res) => {
-  console.log(req.body);
   try {
     const watchedMovies = await WatchedMovies.findByIdAndDelete(req.body.id);
     if (!watchedMovies) res.status(404).send('No watched movies  found');

@@ -62,7 +62,6 @@ exports.waitList_update = async (req, res) => {
 };
 
 exports.waitList_delete = async (req, res) => {
-  console.log(req.body);
   try {
     const waitList = await WaitList.findByIdAndDelete(req.params.id);
     if (!waitList) res.status(404).send('No waitList found');

@@ -5,8 +5,9 @@ exports.profile_create = async (req, res, next) => {
   const profile = new Profile({
     id: uuidv4(),
     userId: req.body.userId,
-    nickname: req.body.nickname,
+    moviesitNickname: req.body.moviesitNickname,
     age: req.body.age,
+    about: req.body.about,
     socialMedias: req.body.socialMedias,
   });
   try {
@@ -28,7 +29,7 @@ exports.profile_details = async (req, res) => {
 
 exports.profile_detail = async (req, res) => {
   try {
-    const profile = await Profile.findOne({ id: req.params.id });
+    const profile = await Profile.findOne({ userId: req.params.id });
     if (!profile) res.status(404).send('No profile found');
     res.status(200).send(profile);
   } catch (error) {
