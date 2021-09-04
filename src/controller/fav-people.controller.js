@@ -10,6 +10,7 @@ exports.fav_people_create = async (req, res, next) => {
   const favPeople = new FavPeople({
     id: uuidv4(),
     personId: req.body.id,
+    userId: req.body.userId,
     isFavorite: req.body.isFavorite,
     name: req.body.name,
     birthDay: req.body.birthDay,
@@ -48,9 +49,19 @@ exports.fav_people_detail = async (req, res) => {
   }
 };
 
+exports.fav_people_details_from_user = async (req, res) => {
+  try {
+    const person = await FavPeople.find({ userId: req.params.id });
+    if (!person) res.status(404).send('No person found');
+    res.status(200).send(person);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 exports.fav_people_delete = async (req, res) => {
   try {
-    const person = await FavPeople.deleteOne({ id: req.body.id });
+    const person = await FavPeople.findByIdAndDelete(req.params.id);
     if (!person) res.status(404).send('No person found');
     res.status(204).send();
   } catch (error) {

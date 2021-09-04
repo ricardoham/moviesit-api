@@ -5,6 +5,7 @@ exports.deposition_create = async (req, res, next) => {
   const deposition = new Deposition({
     id: uuidv4(),
     depositionUserId: req.body.depositionUserId,
+    profileId: req.body.profileId,
     createdBy: req.body.createdBy,
     talk: req.body.talk,
   });

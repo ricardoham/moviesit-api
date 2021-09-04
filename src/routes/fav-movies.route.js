@@ -6,7 +6,8 @@ const favMovieRouter = express.Router();
 
 favMovieRouter.get('', favMoviesController.fav_movies_details);
 favMovieRouter.get('/:id', favMoviesController.fav_movie_detail);
+favMovieRouter.get('/user/:id', favMoviesController.fav_movie_details_from_user);
 favMovieRouter.post('', favMoviesController.fav_movies_create);
-favMovieRouter.delete('', favMoviesController.fav_movie_delete);
+favMovieRouter.delete('/:id', favMoviesController.fav_movie_delete);
 
 module.exports = favMovieRouter;

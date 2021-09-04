@@ -10,6 +10,7 @@ exports.fav_movies_create = async (req, res, next) => {
   const favMovie = new FavMovies({
     id: uuidv4(),
     movieId: req.body.id,
+    userId: req.body.userId,
     isFavorite: req.body.isFavorite,
     title: req.body.title,
     genres: req.body.genres,
@@ -54,9 +55,19 @@ exports.fav_movie_detail = async (req, res) => {
   }
 };
 
+exports.fav_movie_details_from_user = async (req, res) => {
+  try {
+    const movie = await FavMovies.find({ userId: req.params.id });
+    if (!movie) res.status(404).send('No recommendation found');
+    res.status(200).send(movie);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 exports.fav_movie_delete = async (req, res) => {
   try {
-    const movie = await FavMovies.deleteOne({ id: req.body.id });
+    const movie = await FavMovies.findByIdAndDelete(req.params.id);
     if (!movie) res.status(404).send('No movies found');
     res.status(204).send();
   } catch (error) {

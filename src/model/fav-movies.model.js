@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const FavMoviesSchema = new Schema({
   id: { type: String, required: true },
   movieId: { type: Number, required: true },
+  userId: { type: String, required: true },
   isFavorite: { type: Boolean, require: true },
   title: { type: String, required: true },
   genres: { type: Array, required: true },
