@@ -4,10 +4,11 @@ const { Schema } = mongoose;
 
 const Deposition = new Schema({
   id: { type: String },
-  depositionUserId: { type: String, required: true },
-  profileId: { type: String, require: true },
+  userId: { type: String, required: true },
+  commentedItemId: { type: String, require: true },
   createdBy: { type: String, required: true },
-  talk: { type: String, required: true },
+  createdAt: { type: Date, required: true },
+  comment: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Deposition', Deposition);

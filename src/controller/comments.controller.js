@@ -5,7 +5,7 @@ exports.comments_create = async (req, res, next) => {
   const comment = new Comments({
     id: uuidv4(),
     userId: req.body.userId,
-    recommendationId: req.body.recommendationId,
+    commentedItemId: req.body.commentedItemId,
     createdBy: req.body.createdBy,
     createdAt: Date.now(),
     comment: req.body.comment,
@@ -39,7 +39,7 @@ exports.comment_detail = async (req, res) => {
 
 exports.comments_details_from_recommendation = async (req, res) => {
   try {
-    const comments = await Comments.find({ recommendationId: req.params.id });
+    const comments = await Comments.find({ commentedItemId: req.params.id });
     if (!comments) res.status(404).send('No comments found');
     res.status(200).send(comments);
   } catch (error) {

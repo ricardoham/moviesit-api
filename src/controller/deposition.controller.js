@@ -4,10 +4,11 @@ const Deposition = require('../model/deposition.model');
 exports.deposition_create = async (req, res, next) => {
   const deposition = new Deposition({
     id: uuidv4(),
-    depositionUserId: req.body.depositionUserId,
-    profileId: req.body.profileId,
+    userId: req.body.userId,
+    commentedItemId: req.body.commentedItemId,
     createdBy: req.body.createdBy,
-    talk: req.body.talk,
+    createdAt: Date.now(),
+    comment: req.body.comment,
   });
   try {
     await deposition.save();
@@ -38,7 +39,7 @@ exports.deposition_detail = async (req, res) => {
 
 exports.deposition_from_profile = async (req, res) => {
   try {
-    const deposition = await Deposition.find({ profileId: req.params.id });
+    const deposition = await Deposition.find({ commentedItemId: req.params.id });
     if (!deposition) res.status(404).send('No deposition found');
     res.status(200).send(deposition);
   } catch (error) {

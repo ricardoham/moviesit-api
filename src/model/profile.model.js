@@ -14,6 +14,9 @@ const SocialMedias = new Schema({
 const ProfileSchema = new Schema({
   id: { type: String, required: true },
   userId: { type: String, required: true },
+  name: { type: String, required: true },
+  picture: { type: String, required: true },
+  hasProfile: { type: Boolean, required: true, default: false },
   moviesitNickname: { type: String },
   age: { type: Number },
   about: { type: String, max: 500 },

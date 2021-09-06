@@ -13,6 +13,8 @@ const profile = require('./routes/profile.route');
 const deposition = require('./routes/deposition.route');
 const banComment = require('./routes/bancomment.route');
 const report = require('./routes/report.route');
+const users = require('./routes/users.route');
+
 // const watchedMovies = require('./routes/watched-movies.route');
 
 const app = express();
@@ -41,6 +43,7 @@ apiRouter.use('/profile', profile);
 apiRouter.use('/deposition', deposition);
 apiRouter.use('/bancomment', banComment);
 apiRouter.use('/report', report);
+apiRouter.use('/users', users);
 // app.use('/', watchedMovies);
 
 app.listen(config.API_PORT, () => {
