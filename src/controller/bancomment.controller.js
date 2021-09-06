@@ -5,10 +5,11 @@ exports.ban_comments_create = async (req, res, next) => {
   const comment = new BanComments({
     id: uuidv4(),
     userId: req.body.userId,
-    commentUserId: req.body.commentUserId,
-    commentId: req.body.commentId,
-    recommendationId: req.body.recommendationId,
-    createdBy: req.body.createdBy,
+    userReportName: req.body.userReportName,
+    userReportedId: req.body.userReportedId,
+    commentedItemId: req.body.commentedItemId,
+    commentCreatedBy: req.body.commentCreatedBy,
+    commentCreatedAt: req.body.commentCreatedAt,
     createdAt: Date.now(),
     comment: req.body.comment,
   });

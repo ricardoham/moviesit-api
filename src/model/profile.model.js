@@ -21,6 +21,7 @@ const ProfileSchema = new Schema({
   age: { type: Number },
   about: { type: String, max: 500 },
   socialMedias: SocialMedias,
+  createdAt: { type: Date, require: true },
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);

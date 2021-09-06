@@ -14,6 +14,7 @@ const WaitListSchema = new Schema({
   comment: { type: String, require: true },
   dueDate: { type: Date, require: false },
   movie: MoviesSchema,
+  createdAt: { type: Date, required: true },
 });
 
 module.exports = mongoose.model('WaitList', WaitListSchema);

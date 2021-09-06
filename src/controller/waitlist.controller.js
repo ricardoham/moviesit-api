@@ -9,6 +9,7 @@ exports.waitList_create = async (req, res) => {
     comment: req.body.comment,
     dueDate: req.body.dueDate,
     movie: req.body.movie,
+    createdAt: Date.now(),
   });
 
   try {
@@ -22,9 +23,8 @@ exports.waitList_create = async (req, res) => {
 };
 
 exports.waitList_details = async (req, res) => {
-  const waitList = await WaitList.find({});
-
   try {
+    const waitList = await WaitList.find({});
     res.send(waitList);
   } catch (error) {
     res.status(404).send(error);

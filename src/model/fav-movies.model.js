@@ -16,6 +16,7 @@ const FavMoviesSchema = new Schema({
   budget: { type: Number, required: true },
   runtime: { type: Number, required: true },
   revenue: { type: Number, required: true },
+  createdAt: { type: Date, required: true },
 });
 
 module.exports = mongoose.model('FavMovies', FavMoviesSchema);

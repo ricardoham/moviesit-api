@@ -22,6 +22,7 @@ exports.fav_movies_create = async (req, res, next) => {
     budget: req.body.budget,
     runtime: req.body.runtime,
     revenue: req.body.revenue,
+    createdAt: Date.now(),
   });
 
   try {

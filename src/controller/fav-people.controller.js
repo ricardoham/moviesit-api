@@ -20,6 +20,7 @@ exports.fav_people_create = async (req, res, next) => {
     biography: req.body.biography,
     popularity: req.body.popularity,
     profilePatch: req.body.profilePatch,
+    createdAt: Date.now(),
   });
 
   try {

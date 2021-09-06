@@ -12,7 +12,7 @@ const RecommendationsSchema = new Schema({
   id: { type: String, required: true },
   userId: { type: String, required: true },
   createdBy: { type: String, required: true },
-  createdAt: { type: Date },
+  createdAt: { type: Date, required: true },
   title: { type: String, required: true, max: 200 },
   description: { type: String, required: true, max: 300 },
   movies: [MoviesSchema],

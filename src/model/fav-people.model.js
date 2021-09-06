@@ -14,6 +14,7 @@ const FavPeopleSchema = new Schema({
   biography: { type: String, required: true },
   popularity: { type: Number, required: true },
   profilePatch: { type: String, required: true },
+  createdAt: { type: Date, required: true },
 });
 
 module.exports = mongoose.model('FavPeople', FavPeopleSchema);

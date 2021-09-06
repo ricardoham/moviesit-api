@@ -12,6 +12,7 @@ exports.profile_create = async (req, res, next) => {
     age: req.body.age,
     about: req.body.about,
     socialMedias: req.body.socialMedias,
+    createdAt: Date.now(),
   });
   try {
     await profile.save();
