@@ -12,7 +12,7 @@ const WaitListSchema = new Schema({
   userId: { type: String, required: true },
   title: { type: String, required: true },
   comment: { type: String, require: true },
-  dueDate: { type: Date, require: false },
+  dueDate: { type: Date, require: true },
   movie: MoviesSchema,
   createdAt: { type: Date, required: true },
 });

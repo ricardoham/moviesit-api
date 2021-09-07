@@ -23,26 +23,32 @@ exports.generate_report = async (req, res) => {
 
     const report = {
       recommendations: {
+        name: 'Recomendações',
         total: recommendations.length,
         currentMonthTotal: currentMonthTotal(recommendations),
       },
       profile: {
+        name: 'Perfil',
         total: profile.length,
         currentMonthTotal: currentMonthTotal(profile),
       },
       favMovies: {
+        name: 'Meus filmes',
         total: favMovies.length,
         currentMonthTotal: currentMonthTotal(favMovies),
       },
       favPeople: {
+        name: 'Meus atores e diretores',
         total: favPeople.length,
         currentMonthTotal: currentMonthTotal(favPeople),
       },
-      waitlist: {
+      waitList: {
+        name: 'Filmes para assistir mais tarde',
         total: waitlist.length,
         currentMonthTotal: currentMonthTotal(waitlist),
       },
       banComments: {
+        name: 'Comentários reportados',
         total: banComments.length,
         currentMonthTotal: currentMonthTotal(banComments),
       },
