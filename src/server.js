@@ -7,15 +7,12 @@ const favPeople = require('./routes/fav-people.route');
 const clientAPI = require('./routes/client.route');
 const comments = require('./routes/comments.route');
 const recommendation = require('./routes/recommendation.route');
-const friends = require('./routes/friends.route');
 const waitList = require('./routes/waitlist.route');
 const profile = require('./routes/profile.route');
 const deposition = require('./routes/deposition.route');
 const banComment = require('./routes/bancomment.route');
 const report = require('./routes/report.route');
 const users = require('./routes/users.route');
-
-// const watchedMovies = require('./routes/watched-movies.route');
 
 const app = express();
 const corsOptions = {
@@ -37,14 +34,12 @@ apiRouter.use('/favpeople', favPeople);
 apiRouter.use('/client', clientAPI);
 apiRouter.use('/comments', comments);
 apiRouter.use('/recommendations', recommendation);
-apiRouter.use('/friends', friends);
 apiRouter.use('/waitlist', waitList);
 apiRouter.use('/profile', profile);
 apiRouter.use('/deposition', deposition);
 apiRouter.use('/bancomment', banComment);
 apiRouter.use('/report', report);
 apiRouter.use('/users', users);
-// app.use('/', watchedMovies);
 
 app.listen(config.API_PORT, () => {
   console.log(`API running on port ${config.API_PORT}`);
