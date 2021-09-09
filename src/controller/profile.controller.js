@@ -63,6 +63,18 @@ exports.profile_update = async (req, res) => {
   }
 };
 
+exports.profile_grant_admin = async (req, res) => {
+  try {
+    const profile = await Profile.findByIdAndUpdate(
+      req.params.id, req.body,
+    );
+    await profile.save();
+    res.status(200).send(profile);
+  } catch (error) {
+    res.status(401).send(error);
+  }
+};
+
 exports.profile_delete = async (req, res) => {
   try {
     const profile = await Profile.findByIdAndDelete(req.params.id);

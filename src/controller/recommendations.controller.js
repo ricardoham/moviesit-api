@@ -32,6 +32,15 @@ exports.recommendations_details = async (req, res) => {
   }
 };
 
+exports.recommendations_details_from_title = async (req, res) => {
+  try {
+    const recommendations = await Recommendations.find({});
+    res.status(200).send(recommendations);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
 exports.recommendation_detail = async (req, res) => {
   try {
     const recommendations = await Recommendations.findOne({ id: req.params.id });

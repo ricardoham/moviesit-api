@@ -17,6 +17,7 @@ const ProfileSchema = new Schema({
   name: { type: String, required: true },
   picture: { type: String, required: true },
   hasProfile: { type: Boolean, required: true, default: false },
+  isAdmin: { type: Boolean, default: false },
   moviesitNickname: { type: String },
   age: { type: Number },
   about: { type: String, max: 500 },
