@@ -41,6 +41,6 @@ apiRouter.use('/bancomment', banComment);
 apiRouter.use('/report', report);
 apiRouter.use('/users', users);
 
-app.listen(config.API_PORT, () => {
-  console.log(`API running on port ${config.API_PORT}`);
+app.listen(config.PORT, () => {
+  console.log(`API running on port ${config.PORT}`);
 });
