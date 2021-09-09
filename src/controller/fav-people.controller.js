@@ -43,7 +43,7 @@ exports.fav_people_details = async (req, res) => {
 exports.fav_people_detail = async (req, res) => {
   try {
     const person = await FavPeople.findOne({ personId: req.params.id });
-    if (!person) res.status(404).send('No person found');
+    if (!person) res.status(204);
     res.status(200).send(person);
   } catch (error) {
     res.status(401).send(error);

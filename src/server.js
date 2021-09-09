@@ -16,7 +16,7 @@ const users = require('./routes/users.route');
 
 const app = express();
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: process.env.CLIENT_ORIGIN_URL,
   optionsSuccessStatus: 200,
 };
 const apiRouter = express.Router();

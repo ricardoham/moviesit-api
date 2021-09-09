@@ -49,7 +49,7 @@ exports.fav_movies_details = async (req, res) => {
 exports.fav_movie_detail = async (req, res) => {
   try {
     const movie = await FavMovies.findOne({ movieId: req.params.id });
-    if (!movie) res.status(404).send('No movie found');
+    if (!movie) res.status(204);
     res.status(200).send(movie);
   } catch (error) {
     res.status(401).send(error);
