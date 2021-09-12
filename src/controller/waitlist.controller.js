@@ -17,7 +17,7 @@ exports.waitList_create = async (req, res) => {
     res.send('Wait list Created');
   } catch (error) {
     console.error(error);
-    res.status(401);
+    res.status(500);
     res.send('Error occurred during request');
   }
 };
@@ -37,7 +37,7 @@ exports.waitList_detail = async (req, res) => {
     if (!waitList) res.status(404).send('No waitList found');
     res.status(200).send(waitList);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -57,7 +57,7 @@ exports.waitList_update = async (req, res) => {
     await waitList.save();
     res.status(200).send(waitList);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -67,6 +67,6 @@ exports.waitList_delete = async (req, res) => {
     if (!waitList) res.status(404).send('No waitList found');
     res.status(204).send();
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };

@@ -37,7 +37,7 @@ exports.profile_detail = async (req, res) => {
     if (!profile) res.status(204).send();
     res.status(200).send(profile);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -47,7 +47,7 @@ exports.profile_deposition_from_user = async (req, res) => {
     if (!profile) res.status(404).send('No profile found');
     res.status(200).send(profile);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -59,7 +59,7 @@ exports.profile_update = async (req, res) => {
     await profile.save();
     res.status(200).send(profile);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -71,7 +71,7 @@ exports.profile_grant_admin = async (req, res) => {
     await profile.save();
     res.status(200).send(profile);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -81,6 +81,6 @@ exports.profile_delete = async (req, res) => {
     if (!profile) res.status(404).send('No profile found');
     res.status(204).send();
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };

@@ -18,7 +18,7 @@ exports.recommendations_create = async (req, res) => {
     res.send('Recommendation Created');
   } catch (error) {
     console.error(error);
-    res.status(401);
+    res.status(500);
     res.send('Error occurred during request');
   }
 };
@@ -47,7 +47,7 @@ exports.recommendation_detail = async (req, res) => {
     if (!recommendations) res.status(404).send('No recommendation found');
     res.status(200).send(recommendations);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -69,7 +69,7 @@ exports.recommendation_update = async (req, res) => {
     await recommendation.save();
     res.status(200).send(recommendation);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -79,6 +79,6 @@ exports.recommendation_delete = async (req, res) => {
     if (!recommendation) res.status(404).send('No recommendation found');
     res.status(204).send();
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };

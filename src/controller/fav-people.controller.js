@@ -36,7 +36,7 @@ exports.fav_people_details = async (req, res) => {
     const people = await FavPeople.find({});
     res.status(200).send(people);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -47,7 +47,7 @@ exports.fav_people_detail = async (req, res) => {
     if (!person) res.status(204).send();
     res.status(200).send(person);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -67,6 +67,6 @@ exports.fav_people_delete = async (req, res) => {
     if (!person) res.status(404).send('No person found');
     res.status(204).send();
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };

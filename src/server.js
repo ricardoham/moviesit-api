@@ -12,7 +12,6 @@ const profile = require('./routes/profile.route');
 const deposition = require('./routes/deposition.route');
 const banComment = require('./routes/bancomment.route');
 const report = require('./routes/report.route');
-const users = require('./routes/users.route');
 
 const app = express();
 const corsOptions = {
@@ -39,7 +38,6 @@ apiRouter.use('/profile', profile);
 apiRouter.use('/deposition', deposition);
 apiRouter.use('/bancomment', banComment);
 apiRouter.use('/report', report);
-apiRouter.use('/users', users);
 
 app.listen(config.PORT, () => {
   console.log(`API running on port ${config.PORT}`);

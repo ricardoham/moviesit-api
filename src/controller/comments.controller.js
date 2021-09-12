@@ -33,7 +33,7 @@ exports.comment_detail = async (req, res) => {
     if (!comments) res.status(404).send('No comments found');
     res.status(200).send(comments);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -43,7 +43,7 @@ exports.comments_details_from_recommendation = async (req, res) => {
     if (!comments) res.status(404).send('No comments found');
     res.status(200).send(comments);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -53,7 +53,7 @@ exports.comments_details_from_user = async (req, res) => {
     if (!comments) res.status(404).send('No comments found');
     res.status(200).send(comments);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -65,7 +65,7 @@ exports.comment_update = async (req, res) => {
     await comment.save();
     res.status(200).send(comment);
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -75,6 +75,6 @@ exports.comment_delete = async (req, res) => {
     if (!comment) res.status(404).send('No comment found');
     res.status(204).send();
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
