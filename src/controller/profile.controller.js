@@ -34,7 +34,7 @@ exports.profile_details = async (req, res) => {
 exports.profile_detail = async (req, res) => {
   try {
     const profile = await Profile.findOne({ userId: req.params.id });
-    if (!profile) res.status(204).send('No profile found');
+    if (!profile) res.status(204).send();
     res.status(200).send(profile);
   } catch (error) {
     res.status(401).send(error);

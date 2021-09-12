@@ -42,8 +42,9 @@ exports.fav_people_details = async (req, res) => {
 
 exports.fav_people_detail = async (req, res) => {
   try {
-    const person = await FavPeople.findOne({ personId: req.params.id });
-    if (!person) res.status(204);
+    const { query } = req;
+    const person = await FavPeople.findOne({ personId: req.params.id }).where('userId').equals(query.userId);
+    if (!person) res.status(204).send();
     res.status(200).send(person);
   } catch (error) {
     res.status(401).send(error);

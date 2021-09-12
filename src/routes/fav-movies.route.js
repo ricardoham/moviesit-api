@@ -1,6 +1,6 @@
 const express = require('express');
 const favMoviesController = require('../controller/fav-movies.controller');
-const { checkJwt } = require('../middlewares/jwt');
+// const { checkJwt } = require('../middlewares/jwt');
 
 const favMovieRouter = express.Router();
 

@@ -48,8 +48,9 @@ exports.fav_movies_details = async (req, res) => {
 
 exports.fav_movie_detail = async (req, res) => {
   try {
-    const movie = await FavMovies.findOne({ movieId: req.params.id });
-    if (!movie) res.status(204);
+    const { query } = req;
+    const movie = await FavMovies.findOne({ movieId: req.params.id }).where('userId').equals(query.userId);
+    if (!movie) res.status(204).send();
     res.status(200).send(movie);
   } catch (error) {
     res.status(401).send(error);
